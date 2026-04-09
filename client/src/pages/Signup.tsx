@@ -2,6 +2,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+
 import {
   Form,
   FormControl,
@@ -14,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { handleError } from "@/utils/handleError";
 import { useSignupMutation } from "@/redux/slices/api";
 import { useDispatch } from "react-redux";
-import { updateCurrentUser, updateIsLoggedIn } from "@/redux/slices/appSlice";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   username: z.string(),
@@ -23,7 +24,6 @@ const formSchema = z.object({
 });
 
 export default function Signup() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [signup, { isLoading }] = useSignupMutation();
   const form = useForm<z.infer<typeof formSchema>>({
