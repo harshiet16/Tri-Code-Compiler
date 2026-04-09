@@ -9,9 +9,11 @@ import {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL || "http://localhost:4008",
+    baseUrl: import.meta.env.VITE_API_URL,
     credentials: "include",
+
   }),
+
   tagTypes: ["myCodes", "allCodes"],
   endpoints: (builder) => ({
     saveCode: builder.mutation<{ url: string; status: string }, codeType>({
@@ -93,7 +95,7 @@ export const api = createApi({
     }),
   }),
 });
-
+console.log("API URL:", import.meta.env.VITE_API_URL);
 export const {
   useSaveCodeMutation,
   useLoadCodeMutation,
