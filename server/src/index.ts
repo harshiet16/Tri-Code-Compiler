@@ -18,6 +18,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  return res.status(200).send({ message: "TriCode Compiler API is running!" });
+});
+
 app.use("/compiler", compilerRouter);
 app.use("/user", userRouter);
 
