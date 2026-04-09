@@ -1,0 +1,30 @@
+import { config } from "dotenv";
+config();
+import express from "express";
+import cors from "cors";
+import { dbConnect } from "./lib/dbConnect";
+import { compilerRouter } from "./routes/compilerRouter";
+import { userRouter } from "./routes/userRouter";
+import cookieParser from "cookie-parser";
+
+const app = express();
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:5173", process.env.CLIENT_URL!],
+  })
+);
+
+app.use("/compiler", compilerRouter);
+app.use("/user", userRouter);
+
+dbConnect();
+const PORT = process.env.PORT || 4008;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Client URL: ${process.env.CLIENT_URL}`);
+});
