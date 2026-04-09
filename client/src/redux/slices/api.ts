@@ -9,7 +9,7 @@ import {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
+    baseUrl: import.meta.env.VITE_API_URL || "http://localhost:4008",
     credentials: "include",
   }),
   tagTypes: ["myCodes", "allCodes"],
