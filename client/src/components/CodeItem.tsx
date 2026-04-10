@@ -30,10 +30,10 @@ export default function CodeItem({
     }
   };
   return (
-    <div className="p-3 rounded cursor-pointer bg-slate-900 flex justify-start items-center flex-col gap-3">
+    <div className="p-4 rounded-xl cursor-pointer bg-card border border-border flex justify-start items-center flex-col gap-3 shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-200">
       <div className="__top flex justify-start items-start gap-3 w-full">
-        <Code />
-        <p className="font-mono font-bold text-lg">{data.title}</p>
+        <Code className="text-primary mt-1 shrink-0" />
+        <p className="font-mono font-bold text-lg text-card-foreground break-words">{data.title}</p>
       </div>
       <Separator />
       <div className="__btn_container flex gap-3">
