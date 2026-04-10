@@ -15,12 +15,11 @@ app.use(
   cors({
     credentials: true,
     origin: function (origin, callback) {
-      const allowedOrigins = [
-        "http://localhost:5173",
-        process.env.CLIENT_URL,
-      ];
-
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (
+        !origin || // allow tools like Postman
+        origin.includes("vercel.app") || // allow ALL Vercel deployments
+        origin === "http://localhost:5173"
+      ) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
@@ -28,7 +27,7 @@ app.use(
     },
   })
 );
-
+console.log("Incoming origin:", origin);
 app.get("/", (req, res) => {
   return res.status(200).send({ message: "TriCode Compiler API is running!" });
 });
