@@ -27,7 +27,6 @@ app.use(
     },
   })
 );
-console.log("Incoming origin:", origin);
 app.get("/", (req, res) => {
   return res.status(200).send({ message: "TriCode Compiler API is running!" });
 });

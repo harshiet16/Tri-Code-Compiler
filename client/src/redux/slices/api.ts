@@ -9,7 +9,7 @@ import {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://tri-code-compiler.onrender.com",
+    baseUrl: import.meta.env.VITE_API_URL || "http://localhost:4008",
     credentials: "include",
 
   }),
@@ -95,7 +95,7 @@ export const api = createApi({
     }),
   }),
 });
-console.log("API URL:", import.meta.env.VITE_API_URL);
+
 export const {
   useSaveCodeMutation,
   useLoadCodeMutation,
