@@ -48,8 +48,8 @@ export default function Signup() {
     <div className="__signup grid-bg w-full h-[calc(100dvh-60px)] flex justify-center items-center flex-col gap-3 bg-background">
       <div className="__form_container h-full sm:h-fit glassmorphism py-8 px-4 flex flex-col gap-5 w-full sm:w-[320px] rounded-xl shadow-2xl">
         <div className="">
-          <h1 className="font-mono text-4xl font-bold text-left">Signup</h1>
-          <p className=" font-mono text-xs">
+          <h1 className="font-mono text-4xl font-bold text-left text-foreground">Signup</h1>
+          <p className="font-mono text-xs text-muted-foreground">
             Join the community of expert frontend developers🧑‍💻.
           </p>
         </div>

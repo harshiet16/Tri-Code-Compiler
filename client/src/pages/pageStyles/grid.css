@@ -1,9 +1,18 @@
 .grid-bg {
-  background: #000000;
   --gap: 5em;
   --line: 1px;
-  --color: rgba(255, 255, 255, 0.2);
+  background-color: hsl(var(--background));
+}
 
+.dark .grid-bg {
+  --color: rgba(255, 255, 255, 0.1);
+}
+
+:not(.dark) .grid-bg {
+  --color: rgba(0, 0, 0, 0.1);
+}
+
+.grid-bg {
   background-image: linear-gradient(
       -90deg,
       transparent calc(var(--gap) - var(--line)),

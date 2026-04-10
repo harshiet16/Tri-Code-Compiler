@@ -1,4 +1,4 @@
-import { Code, Copy, Download, PencilLine, Save, Share2 } from "lucide-react";
+import { Code, Copy, Download, Moon, PencilLine, Save, Share2, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 
 import {
@@ -27,6 +27,7 @@ import {
 import { toast } from "sonner";
 import { useEditCodeMutation, useSaveCodeMutation } from "@/redux/slices/api";
 import { Input } from "./ui/input";
+import { useTheme } from "./theme-provider";
 
 export default function HelperHeader() {
   const isOwner = useSelector(
@@ -34,6 +35,7 @@ export default function HelperHeader() {
   );
   const [shareBtn, setShareBtn] = useState<boolean>(false);
   const [postTitle, setPostTitle] = useState<string>("My Code");
+  const { theme, setTheme } = useTheme();
 
   const navigate = useNavigate();
   const fullCode = useSelector(
@@ -126,7 +128,7 @@ export default function HelperHeader() {
     (state: RootState) => state.compilerSlice.currentLanguage
   );
   return (
-    <div className="__helper_header h-[50px] bg-black text-white p-2 flex justify-between items-center">
+    <div className="__helper_header h-[50px] bg-card border-b border-border text-foreground p-2 flex justify-between items-center">
       <div className="__btn_container flex gap-1">
         <Dialog>
           <DialogTrigger asChild>
@@ -142,7 +144,7 @@ export default function HelperHeader() {
               </DialogTitle>
               <div className="__url flex justify-center items-center gap-1">
                 <Input
-                  className="bg-slate-700 focus-visible:ring-0"
+                  className="bg-muted focus-visible:ring-0"
                   placeholder="Type your Post title"
                   value={postTitle}
                   onChange={(e) => setPostTitle(e.target.value)}
@@ -190,7 +192,7 @@ export default function HelperHeader() {
                     <input
                       type="text"
                       disabled
-                      className="w-full p-2 rounded bg-slate-800 text-slate-400 select-none"
+                      className="w-full p-2 rounded bg-muted text-muted-foreground select-none"
                       value={window.location.href}
                     />
                     <Button
@@ -206,7 +208,7 @@ export default function HelperHeader() {
                       <Copy size={14} />
                     </Button>
                   </div>
-                  <p className="text-center text-slate-400 text-xs">
+                  <p className="text-center text-muted-foreground text-xs">
                     Share this URL with your friends to collaborate.
                   </p>
                 </DialogHeader>
@@ -226,7 +228,7 @@ export default function HelperHeader() {
             )
           }
         >
-          <SelectTrigger className="w-[120px] bg-gray-800 outline-none focus:ring-0">
+          <SelectTrigger className="w-[120px] bg-muted outline-none focus:ring-0">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -235,6 +237,14 @@ export default function HelperHeader() {
             <SelectItem value="javascript">JavaScript</SelectItem>
           </SelectContent>
         </Select>
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          title="Toggle theme"
+        >
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+        </Button>
       </div>
     </div>
   );
